@@ -16,10 +16,11 @@ namespace SaTechPiesShop.Migrations
                     Name = table.Column<string>(nullable: true),
                     ShortDescription = table.Column<string>(nullable: true),
                     LongDescription = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ImageUrl = table.Column<string>(nullable: true),
                     ImageThumbnailUrl = table.Column<string>(nullable: true),
-                    IsPieOfTheWeek = table.Column<bool>(nullable: false)
+                    IsPieOfTheWeek = table.Column<bool>(nullable: false),
+                    IsInStock = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

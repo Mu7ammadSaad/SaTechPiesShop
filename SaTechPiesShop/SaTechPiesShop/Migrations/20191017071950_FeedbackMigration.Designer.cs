@@ -9,8 +9,8 @@ using SaTechPiesShop.Models;
 namespace SaTechPiesShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20191003053243_PieModelChanged")]
-    partial class PieModelChanged
+    [Migration("20191017071950_FeedbackMigration")]
+    partial class FeedbackMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,31 @@ namespace SaTechPiesShop.Migrations
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("SaTechPiesShop.Models.Feedback", b =>
+                {
+                    b.Property<int>("FeedbackId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("ContactMe");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(5000);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.HasKey("FeedbackId");
+
+                    b.ToTable("Feedbacks");
+                });
 
             modelBuilder.Entity("SaTechPiesShop.Models.Pie", b =>
                 {
@@ -38,7 +63,8 @@ namespace SaTechPiesShop.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<decimal>("Price");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ShortDescription");
 

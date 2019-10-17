@@ -9,7 +9,7 @@ using SaTechPiesShop.Models;
 namespace SaTechPiesShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20191002131830_InitialMigration")]
+    [Migration("20191017071704_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,13 +30,16 @@ namespace SaTechPiesShop.Migrations
 
                     b.Property<string>("ImageUrl");
 
+                    b.Property<bool>("IsInStock");
+
                     b.Property<bool>("IsPieOfTheWeek");
 
                     b.Property<string>("LongDescription");
 
                     b.Property<string>("Name");
 
-                    b.Property<decimal>("Price");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ShortDescription");
 
